@@ -11,6 +11,7 @@ public class Board {
     private final int rows;
     private final int columns;
     private Block falling_block;
+    private Block board[][];
     private int current_block_row;
     private int current_block_column;
 
@@ -18,6 +19,7 @@ public class Board {
         this.rows = rows;
         this.columns = columns;
         this.falling_block = null;
+        this.board = new Block[rows][columns];
         this.current_block_row = 0;
         this.current_block_column = this.columns / 2;
     }
@@ -30,7 +32,11 @@ public class Board {
                     (col == current_block_column) && (row == current_block_row)) {
                     s += falling_block.toString();
                 } else {
-                    s += ".";
+                    if (board[row][col] != null) {
+                        s += board[row][col].toString();
+                    } else {
+                        s += ".";
+                    }
                 }
             }
             s += "\n";
@@ -57,6 +63,10 @@ public class Board {
     public void tick() {
         if (falling_block != null) {
             current_block_row++;
+            if (current_block_row == rows) {
+                board[current_block_row-1][current_block_column] = falling_block;
+                falling_block = null;
+            }
         }
     }
     
