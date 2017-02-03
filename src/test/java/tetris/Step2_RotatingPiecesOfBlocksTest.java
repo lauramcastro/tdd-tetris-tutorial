@@ -20,9 +20,7 @@ public class Step2_RotatingPiecesOfBlocksTest extends Assert {
     // - See README for motivation
     // - Next step: RotatingTetrominoesTest
 
-/*
     private Piece piece;
-
 
     public class A_piece_of_3x3_blocks {
 
@@ -60,7 +58,7 @@ public class Step2_RotatingPiecesOfBlocksTest extends Assert {
 //                    "...\n", piece.toString());
 //        }
     }
-*/
+
 
 /*
     public class A_piece_of_5x5_blocks {
