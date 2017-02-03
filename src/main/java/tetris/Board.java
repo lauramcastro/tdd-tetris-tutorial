@@ -20,8 +20,6 @@ public class Board {
         this.columns = columns;
         this.falling_block = null;
         this.board = new Block[rows][columns];
-        this.current_block_row = 0;
-        this.current_block_column = this.columns / 2;
     }
 
     public String toString() {
@@ -55,6 +53,8 @@ public class Board {
     public void drop(Block b) throws IllegalStateException {
         if (falling_block == null) {
             falling_block = b;
+            current_block_row = 0;
+            current_block_column = this.columns / 2;
         } else {
             throw new IllegalStateException(Board.ALREADY_FALLING);
         }

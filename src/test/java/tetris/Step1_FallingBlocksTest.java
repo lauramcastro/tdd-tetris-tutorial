@@ -111,7 +111,6 @@ public class Step1_FallingBlocksTest extends Assert {
     }
 
 
-/*
     public class When_a_block_lands_on_another_block {
 
         @Before
@@ -149,5 +148,5 @@ public class Step1_FallingBlocksTest extends Assert {
 //            assertFalse("the block should stop moving when it lands on the other block", board.hasFalling());
 //        }
     }
-*/
+
 }
