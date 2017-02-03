@@ -60,49 +60,49 @@ public class Step2_RotatingPiecesOfBlocksTest extends Assert {
     }
 
 
-    // public class A_piece_of_5x5_blocks {
+    public class A_piece_of_5x5_blocks {
 
-    //     @Before
-    //     public void createPiece() {
-    //         piece = new Piece("" +
-    //                 "..XXX\n" +
-    //                 "..XX.\n" +
-    //                 "..X..\n" +
-    //                 ".....\n" +
-    //                 ".....\n");
-    //     }
+        @Before
+        public void createPiece() {
+            piece = new Piece("" +
+                    "..XXX\n" +
+                    "..XX.\n" +
+                    "..X..\n" +
+                    ".....\n" +
+                    ".....\n");
+        }
 
-    //     @Test
-    //     public void consists_of_many_blocks() {
-    //         assertEquals("" +
-    //                 "..XXX\n" +
-    //                 "..XX.\n" +
-    //                 "..X..\n" +
-    //                 ".....\n" +
-    //                 ".....\n", piece.toString());
-    //     }
+        @Test
+        public void consists_of_many_blocks() {
+            assertEquals("" +
+                    "..XXX\n" +
+                    "..XX.\n" +
+                    "..X..\n" +
+                    ".....\n" +
+                    ".....\n", piece.toString());
+        }
 
-    //    @Test
-    //    public void can_be_rotated_right() {
-    //        piece = piece.rotateRight();
-    //        assertEquals("" +
-    //                ".....\n" +
-    //                ".....\n" +
-    //                "..XXX\n" +
-    //                "...XX\n" +
-    //                "....X\n", piece.toString());
-    //    }
+       @Test
+       public void can_be_rotated_right() {
+           piece = piece.rotateRight();
+           assertEquals("" +
+                   ".....\n" +
+                   ".....\n" +
+                   "..XXX\n" +
+                   "...XX\n" +
+                   "....X\n", piece.toString());
+       }
 
-//        @Test
-//        public void can_be_rotated_left() {
-//            piece = piece.rotateLeft();
-//            assertEquals("" +
-//                    "X....\n" +
-//                    "XX...\n" +
-//                    "XXX..\n" +
-//                    ".....\n" +
-//                    ".....\n", piece.toString());
-//        }
-    // }
+       @Test
+       public void can_be_rotated_left() {
+           piece = piece.rotateLeft();
+           assertEquals("" +
+                   "X....\n" +
+                   "XX...\n" +
+                   "XXX..\n" +
+                   ".....\n" +
+                   ".....\n", piece.toString());
+       }
+    }
 
 }
