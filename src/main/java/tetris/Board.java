@@ -47,5 +47,11 @@ public class Board {
     public void drop(Block b) {
         falling_block = b;
     }
+
+    public void tick() {
+        if (falling_block != null) {
+            current_block_row++;
+        }
+    }
     
 }
