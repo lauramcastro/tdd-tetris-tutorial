@@ -8,10 +8,12 @@ public class Board {
 
     private final int rows;
     private final int columns;
+    private Block falling_block;
 
     public Board(int rows, int columns) {
         this.rows = rows;
         this.columns = columns;
+        this.falling_block = null;
     }
 
     public String toString() {
@@ -26,7 +28,15 @@ public class Board {
     }
 
     public boolean hasFalling() {
-        return false;
+        if (falling_block == null) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
+    public void drop(Block b) {
+        falling_block = b;
+    }
+    
 }
