@@ -8,4 +8,9 @@ public class Block {
         this.block = block;
     }
 
+    public String toString() {
+        char block_as_string[] = { block };
+        return new String(block_as_string);
+    }
+
 }
