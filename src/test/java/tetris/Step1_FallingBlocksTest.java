@@ -68,15 +68,16 @@ public class Step1_FallingBlocksTest extends Assert {
                    "...\n", board.toString());
        }
 
-//        @Test
-//        public void at_most_one_block_may_be_falling_at_a_time() {
-//            MyAsserts.assertThrows(IllegalStateException.class, "already falling",
-//                    () -> board.drop(new Block('Y')));
-//            assertEquals("" +
-//                    ".X.\n" +
-//                    "...\n" +
-//                    "...\n", board.toString());
-//        }
+       @Test
+       public void at_most_one_block_may_be_falling_at_a_time() {
+           MyAsserts.assertThrows(IllegalStateException.class, "already falling",
+                   () -> board.drop(new Block('Y')));
+           assertEquals("" +
+                   ".X.\n" +
+                   "...\n" +
+                   "...\n", board.toString());
+       }
+
     }
 
 

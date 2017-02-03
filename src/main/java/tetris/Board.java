@@ -6,6 +6,8 @@ package tetris;
 
 public class Board {
 
+    public static final String ALREADY_FALLING = "already falling";
+    
     private final int rows;
     private final int columns;
     private Block falling_block;
@@ -44,8 +46,12 @@ public class Board {
         }
     }
 
-    public void drop(Block b) {
-        falling_block = b;
+    public void drop(Block b) throws IllegalStateException {
+        if (falling_block == null) {
+            falling_block = b;
+        } else {
+            throw new IllegalStateException(Board.ALREADY_FALLING);
+        }
     }
 
     public void tick() {
