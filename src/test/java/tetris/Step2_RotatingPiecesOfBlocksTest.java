@@ -11,7 +11,6 @@ import org.junit.runner.RunWith;
 /**
  * @author Esko Luontola
  */
-@Ignore("contains no test")
 @RunWith(NestedJUnit.class)
 public class Step2_RotatingPiecesOfBlocksTest extends Assert {
 
@@ -49,14 +48,16 @@ public class Step2_RotatingPiecesOfBlocksTest extends Assert {
                    "...\n", piece.toString());
        }
 
-//        @Test
-//        public void can_be_rotated_left() {
-//            piece = piece.rotateLeft();
-//            assertEquals("" +
-//                    "...\n" +
-//                    "XX.\n" +
-//                    "...\n", piece.toString());
-//        }
+       @Test
+       public void can_be_rotated_left() {
+           piece = piece.rotateLeft();
+           System.out.println("HOW IS THIS POSSIBLE " + piece.toString());
+           assertEquals("" +
+                   "...\n" +
+                   "XX.\n" +
+                   "...\n", piece.toString());
+       }
+
     }
 
 
