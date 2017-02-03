@@ -63,7 +63,8 @@ public class Board {
     public void tick() {
         if (falling_block != null) {
             current_block_row++;
-            if (current_block_row == rows) {
+            if ((current_block_row == rows) ||
+                (board[current_block_row][current_block_column] != null)) {
                 board[current_block_row-1][current_block_column] = falling_block;
                 falling_block = null;
             }
