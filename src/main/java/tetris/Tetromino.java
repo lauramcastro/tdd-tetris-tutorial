@@ -3,7 +3,8 @@ package tetris;
 public class Tetromino {
 
     public static final Tetromino T_SHAPE = new Tetromino(new Piece(".T.\nTTT\n..."));
-
+    public static final Tetromino I_SHAPE = new Tetromino(new Piece(".....\n.....\nIIII.\n.....\n.....\n"));
+    
     private Piece piece;
     
     private Tetromino(Piece piece) {
