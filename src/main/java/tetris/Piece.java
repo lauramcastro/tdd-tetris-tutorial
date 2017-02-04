@@ -31,25 +31,11 @@ public class Piece {
     }
 
     public Piece rotateRight() { // transpose + reverse each row
-        Block[][] transposedBlocks = transpose(blocks);
-        Block[][] newBlocks = new Block[transposedBlocks.length][transposedBlocks[0].length];
-        for (int i=0; i<transposedBlocks.length; i++) {
-            for (int j=0; j<transposedBlocks[i].length; j++) {
-                newBlocks[i][j] = transposedBlocks[i][transposedBlocks[i].length-j-1];
-            }
-        }
-        return new Piece(newBlocks);
+        return new Piece(reverse_rows(transpose(blocks)));
     }
 
-    public Piece rotateLeft() { // transpose + reverse each column
-        Block[][] transposedBlocks = transpose(blocks);
-        Block[][] newBlocks = new Block[transposedBlocks.length][transposedBlocks[0].length];
-        for (int i=0; i<transposedBlocks.length; i++) {
-            for (int j=0; j<transposedBlocks[i].length; j++) {
-                newBlocks[i][j] = transposedBlocks[transposedBlocks.length-i-1][j];
-            }
-        }
-        return new Piece(newBlocks);
+    public Piece rotateLeft() { // reverse each row + transpose
+        return new Piece(transpose(reverse_rows(blocks)));
     }
 
     private Block[][] transpose(Block blocks[][]) {
@@ -60,6 +46,16 @@ public class Piece {
             }
         }
         return transposedBlocks;
+    }
+
+    private Block[][] reverse_rows(Block blocks[][]) {
+        Block[][] reversedBlocks = new Block[blocks.length][blocks[0].length];
+        for (int i=0; i<blocks.length; i++) {
+            for (int j=0; j<blocks[i].length; j++) {
+                reversedBlocks[i][j] = blocks[i][blocks[i].length-j-1];
+            }
+        }
+        return reversedBlocks;
     }
 
     private Piece(Block blocks[][]) {
