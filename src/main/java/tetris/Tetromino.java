@@ -2,7 +2,7 @@ package tetris;
 
 public class Tetromino {
 
-    public static final Tetromino T_SHAPE = new Tetromino(new Piece("XXX\n.X.\n..."));
+    public static final Tetromino T_SHAPE = new Tetromino(new Piece(".T.\nTTT\n..."));
 
     private Piece piece;
     
