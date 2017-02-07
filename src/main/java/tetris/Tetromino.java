@@ -1,6 +1,6 @@
 package tetris;
 
-public class Tetromino {
+public class Tetromino implements BoardPiece {
 
     public static final Tetromino T_SHAPE = new Tetromino(new Piece(".T.\nTTT\n..."));
     public static final Tetromino I_SHAPE = new Tetromino(new Piece("....\nIIII\n....\n....\n"));

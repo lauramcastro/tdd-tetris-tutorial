@@ -10,8 +10,8 @@ public class Board {
     
     private final int rows;
     private final int columns;
-    private Block falling_block;
-    private Block board[][];
+    private BoardPiece falling_block;
+    private BoardPiece board[][];
     private int current_block_row;
     private int current_block_column;
 
@@ -50,7 +50,7 @@ public class Board {
         }
     }
 
-    public void drop(Block b) throws IllegalStateException {
+    public void drop(BoardPiece b) throws IllegalStateException {
         if (falling_block == null) {
             falling_block = b;
             current_block_row = 0;

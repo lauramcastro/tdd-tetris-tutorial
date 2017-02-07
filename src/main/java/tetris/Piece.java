@@ -1,6 +1,6 @@
 package tetris;
 
-public class Piece {
+public class Piece implements BoardPiece {
 
     private Block[][] blocks;
     

@@ -2,6 +2,10 @@
 
 !include style.iuml
 
+interface BoardPiece <<interface>>{
+  + {abstract} toString() : String
+}
+
 class Block {
   - block : char
   + toString() : String
@@ -37,11 +41,15 @@ class Tetromino {
     + rotateLeft() : Tetromino
 }
 
-Board --> "0..1" Block : falling_block
-Board o--> "*" Block : board
+BoardPiece <|-- Block
+BoardPiece <|-- Piece
+BoardPiece <|-- Tetromino
 
-Piece *--> "1*" Block : blocks
+Board -right-> "0..1" BoardPiece : falling_block
+Board o--> "*" BoardPiece : board
 
-Tetromino *--> "piece" Piece
+Piece *-left-> "1*" Block : blocks
+
+Tetromino *-left-> "piece" Piece
 
 @enduml
