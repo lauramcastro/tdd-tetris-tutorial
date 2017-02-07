@@ -13,4 +13,12 @@ public class Block implements BoardPiece {
         return new String(block_as_string);
     }
 
+    public int width() {
+        return 1;
+    }
+
+    public int height() {
+        return 1;
+    }
+
 }

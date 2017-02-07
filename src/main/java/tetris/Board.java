@@ -6,35 +6,37 @@ package tetris;
 
 public class Board {
 
-    public static final String ALREADY_FALLING = "already falling";
+    public  static final String ALREADY_FALLING = "already falling";
+    private static final char EMPTY = '.';
     
     private final int rows;
     private final int columns;
     private BoardPiece falling_block;
-    private BoardPiece board[][];
     private int current_block_row;
     private int current_block_column;
+    private char board[][];
+    private boolean last_tick;
 
     public Board(int rows, int columns) {
         this.rows = rows;
         this.columns = columns;
         this.falling_block = null;
-        this.board = new Block[rows][columns];
+        this.board = new char[rows][columns];
+        fill_with(board, Board.EMPTY);
+        this.last_tick = false;
     }
 
     public String toString() {
         String s = "";
-        for (int row = 0; row < rows; row++) {
-            for (int col = 0; col < columns; col++) {
-                if ((falling_block != null) &&
-                    (col == current_block_column) && (row == current_block_row)) {
-                    s += falling_block.toString();
+        for (int i=0; i<board.length; i++) {
+            for (int j=0; j<board[0].length; j++) {
+                if (falling_block_is_at(i,j)) {
+                    char block[][] = new char[falling_block.width()][falling_block.height()];
+                    fill_with(block, falling_block.toString());
+                    s += block[(i-current_block_row)][(j-current_block_column)];
                 } else {
-                    if (board[row][col] != null) {
-                        s += board[row][col].toString();
-                    } else {
-                        s += ".";
-                    }
+                    char c[] = { board[i][j] };
+                    s += new String(c);
                 }
             }
             s += "\n";
@@ -43,18 +45,14 @@ public class Board {
     }
 
     public boolean hasFalling() {
-        if (falling_block == null) {
-            return false;
-        } else {
-            return true;
-        }
+        return ((falling_block != null) || last_tick);
     }
 
     public void drop(BoardPiece b) throws IllegalStateException {
-        if (falling_block == null) {
+        if ((falling_block == null) || (last_tick)) {
             falling_block = b;
             current_block_row = 0;
-            current_block_column = this.columns / 2;
+            current_block_column = (this.columns / 2) - (b.width() / 2);
         } else {
             throw new IllegalStateException(Board.ALREADY_FALLING);
         }
@@ -63,11 +61,62 @@ public class Board {
     public void tick() {
         if (falling_block != null) {
             current_block_row++;
-            if ((current_block_row == rows) ||
-                (board[current_block_row][current_block_column] != null)) {
-                board[current_block_row-1][current_block_column] = falling_block;
+            if (reached_bottom() || touched_another_block()) {
+                fill_with(board, toString());
                 falling_block = null;
+                last_tick = true;
             }
+        } else {
+            last_tick = false;
+        }
+    }
+
+    private void fill_with(char matrix[][], char c) {
+        for (int i=0; i<matrix.length; i++) {
+            for (int j=0; j<matrix[0].length; j++) {
+                matrix[i][j] = c;
+            }
+        }
+    }
+
+    private void fill_with(char matrix[][], String s) {
+        String[] rows = s.split("\n");
+        for (int i=0; i<rows.length; i++) {
+            char[] column = rows[i].toCharArray();
+            for (int j=0; j<column.length; j++) {
+                matrix[i][j] = column[j];
+            }
+        }
+    }
+
+    private boolean reached_bottom() {
+        if (falling_block != null) {
+            return (current_block_row + falling_block.height() == rows);
+        } else {
+            return false;
+        }
+    }
+
+    private boolean touched_another_block() {
+        for (int i=0; i<rows-1; i++) {
+            for (int j=0; j<columns; j++) {
+                if ((board[i+1][j] != Board.EMPTY) &&
+                    falling_block_is_at(i, j)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    private boolean falling_block_is_at(int row, int column) {
+        if (falling_block != null) {
+            return ((current_block_row <= row) &&
+                    (row < current_block_row + falling_block.height()) &&
+                    (current_block_column <= column) &&
+                    (column < current_block_column + falling_block.width()));
+        } else {
+            return false;
         }
     }
     

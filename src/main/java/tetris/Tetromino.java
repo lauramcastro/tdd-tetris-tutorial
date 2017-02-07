@@ -16,6 +16,14 @@ public class Tetromino implements BoardPiece {
         return piece.toString();
     }
 
+    public int width() {
+        return piece.width();
+    }
+
+    public int height() {
+        return piece.height();
+    }
+
     public Tetromino rotateRight() {
         return new Tetromino(piece.rotateRight());
     }

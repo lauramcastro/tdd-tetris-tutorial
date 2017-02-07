@@ -30,6 +30,14 @@ public class Piece implements BoardPiece {
         return s;
     }
 
+    public int width() {
+        return blocks[0].length;
+    }
+
+    public int height() {
+        return blocks.length;
+    }
+
     public Piece rotateRight() { // transpose + reverse each row
         return new Piece(reverse_rows(transpose(blocks)));
     }
