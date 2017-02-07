@@ -1,0 +1,70 @@
+
+hide footbox
+
+!define BGCOLOR #EEEEEE
+!define ACTORBGCOLOR #EEEEEE
+!define ARROWCOLOR #444444
+!define BORDERCOLOR #222222
+!define TEXTCOLOR #000000
+
+' Springer likes one color diagrams
+hide circle
+skinparam monochrome false
+skinparam shadowing false
+!define BGCOLOR #FFFFFF
+!define ACTORBGCOLOR #FFFFFF
+!define ARROWCOLOR #444444
+!define BORDERCOLOR #222222
+!define TEXTCOLOR #000000
+
+
+skinparam class {
+	BackgroundColor BGCOLOR
+	ArrowColor ARROWCOLOR
+	BorderColor BORDERCOLOR
+}
+
+skinparam interface {
+	BackgroundColor BGCOLOR
+	ArrowColor ARROWCOLOR
+	BorderColor BORDERCOLOR
+}
+
+skinparam component {
+	BackgroundColor BGCOLOR
+	ArrowColor ARROWCOLOR
+	BorderColor BORDERCOLOR
+}
+
+skinparam object {
+	BackgroundColor BGCOLOR
+	ArrowColor ARROWCOLOR
+	BorderColor BORDERCOLOR
+}
+
+skinparam note {
+	BackgroundColor BGCOLOR
+	ArrowColor ARROWCOLOR
+	BorderColor BORDERCOLOR
+}
+
+skinparam classAttributeIconSize 0
+skinparam objectAttributeIconSize 0
+
+skinparam sequence {
+	ArrowColor ARROWCOLOR
+	ActorBorderColor BORDERCOLOR
+	LifeLineBorderColor #000000
+	LifeLineBackgroundColor BGCOLOR
+
+	ParticipantBorderColor BORDERCOLOR
+	ParticipantBackgroundColor BGCOLOR
+	ParticipantFontName Impact
+	ParticipantFontSize 12
+	ParticipantFontColor TEXTCOLOR
+
+	ActorBackgroundColor ACTORBGCOLOR
+	ActorFontColor TEXTCOLOR
+	ActorFontSize 12
+	ActorFontName Aapex
+}

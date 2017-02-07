@@ -1,0 +1,47 @@
+@startuml
+
+!include style.iuml
+
+class Block {
+  - block : char
+  + toString() : String
+}
+
+class Board {
+    + {static} ALREADY_FALLING : String
+    - rows : int
+    - columns : int
+    - current_block_row : int
+    - current_block_column : int
+    + toString() : String
+    + hasFalling() : boolean
+    + drop(Block b)
+    + tick()
+
+}
+
+class Piece {
+    + toString() : String
+    + rotateRight() : Piece
+    + rotateLeft() : Piece
+    - transpose(Block blocks[][]) : Block[][]
+    - reverse_rows(Block blocks[][]) : Block[][] 
+}
+
+class Tetromino {
+    + {static} T_SHAPE : Tetromino
+    + {static} I_SHAPE : Tetromino
+    + {static} O_SHAPE : Tetromino
+    + toString() : String
+    + rotateRight() : Tetromino
+    + rotateLeft() : Tetromino
+}
+
+Board --> "0..1" Block : falling_block
+Board o--> "*" Block : board
+
+Piece *--> "1*" Block : blocks
+
+Tetromino *--> "piece" Piece
+
+@enduml
