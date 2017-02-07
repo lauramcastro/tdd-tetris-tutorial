@@ -4,32 +4,45 @@
 
 interface BoardPiece <<interface>>{
   + {abstract} toString() : String
+  + {abstract} width() : int
+  + {abstract} height() : int
 }
 
 class Block {
   - block : char
   + toString() : String
+  + width() : int
+  + height() : int
 }
 
 class Board {
     + {static} ALREADY_FALLING : String
+    - {static} EMPTY : char;
     - rows : int
     - columns : int
     - current_block_row : int
     - current_block_column : int
+    - board : char[][]
+    - last_tick : boolean
     + toString() : String
     + hasFalling() : boolean
-    + drop(Block b)
+    + drop(b : BoardPiece)
     + tick()
-
+    - fill_with(matrix : char[][], c : char)
+    - fill_with(matrix : char[][], s : String)
+    - reached_bottom() : boolean 
+    - touched_another_block() : boolean
+    - falling_block_is_at(row : int, column : int) : boolean
 }
 
 class Piece {
     + toString() : String
+    + width() : int
+    + height() : int
     + rotateRight() : Piece
     + rotateLeft() : Piece
-    - transpose(Block blocks[][]) : Block[][]
-    - reverse_rows(Block blocks[][]) : Block[][] 
+    - transpose(blocks : Block[][]) : Block[][]
+    - reverse_rows(blocks : Block[][]) : Block[][] 
 }
 
 class Tetromino {
@@ -37,19 +50,25 @@ class Tetromino {
     + {static} I_SHAPE : Tetromino
     + {static} O_SHAPE : Tetromino
     + toString() : String
+    + width() : int
+    + height() : int
     + rotateRight() : Tetromino
     + rotateLeft() : Tetromino
 }
+
+class IllegalStateException {
+}
+
+Board -right-> "0..1" BoardPiece : falling_block
+
+Board ..> IllegalStateException : throws
 
 BoardPiece <|-- Block
 BoardPiece <|-- Piece
 BoardPiece <|-- Tetromino
 
-Board -right-> "0..1" BoardPiece : falling_block
-Board o--> "*" BoardPiece : board
+Piece *-left-> "1..*" Block : "-blocks"
 
-Piece *-left-> "1*" Block : blocks
-
-Tetromino *-left-> "piece" Piece
+Tetromino *-left-> "-piece" Piece
 
 @enduml
