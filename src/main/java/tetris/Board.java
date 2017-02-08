@@ -7,7 +7,7 @@ package tetris;
 public class Board {
 
     public  static final String ALREADY_FALLING = "already falling";
-    private static final char EMPTY = '.';
+    private static final char   EMPTY = '.';
     
     private final int rows;
     private final int columns;
@@ -90,11 +90,16 @@ public class Board {
     }
 
     private boolean reached_bottom() {
-        if (falling_block != null) {
-            return (current_block_row + falling_block.height() == rows);
-        } else {
-            return false;
+        int reached_row = current_block_row;
+        String[] s = falling_block.toString().split("\n");
+
+        for (int i=0; i<s.length; i++) {
+            if (s[i].replace(Board.EMPTY, ' ').trim().length() != 0) {
+                reached_row++;
+            }
         }
+
+        return (reached_row == rows);
     }
 
     private boolean touched_another_block() {
