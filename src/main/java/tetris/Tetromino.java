@@ -24,6 +24,10 @@ public class Tetromino implements BoardPiece {
         return piece.height();
     }
 
+    public boolean is_hollow_at(int i, int j) {
+        return piece.is_hollow_at(i, j);
+    }
+
     public Tetromino rotateRight() {
         return new Tetromino(piece.rotateRight());
     }

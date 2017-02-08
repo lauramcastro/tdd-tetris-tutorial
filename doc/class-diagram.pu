@@ -3,9 +3,11 @@
 !include style.iuml
 
 interface BoardPiece <<interface>>{
+  + {static} EMPTY : char;
   + {abstract} toString() : String
   + {abstract} width() : int
   + {abstract} height() : int
+  + {abstract} is_hollow_at() : boolean
 }
 
 class Block {
@@ -13,11 +15,11 @@ class Block {
   + toString() : String
   + width() : int
   + height() : int
+  + is_hollow_at() : boolean
 }
 
 class Board {
     + {static} ALREADY_FALLING : String
-    - {static} EMPTY : char;
     - rows : int
     - columns : int
     - current_block_row : int
@@ -39,6 +41,7 @@ class Piece {
     + toString() : String
     + width() : int
     + height() : int
+    + is_hollow_at() : boolean
     + rotateRight() : Piece
     + rotateLeft() : Piece
     - transpose(blocks : Block[][]) : Block[][]
@@ -52,6 +55,7 @@ class Tetromino {
     + toString() : String
     + width() : int
     + height() : int
+    + is_hollow_at() : boolean
     + rotateRight() : Tetromino
     + rotateLeft() : Tetromino
 }
@@ -67,7 +71,7 @@ BoardPiece <|-- Block
 BoardPiece <|-- Piece
 BoardPiece <|-- Tetromino
 
-Piece *-left-> "1..*" Block : "-blocks"
+Piece o-left-> "1..*" Block : "-blocks"
 
 Tetromino *-left-> "-piece" Piece
 

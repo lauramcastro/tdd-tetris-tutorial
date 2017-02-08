@@ -38,6 +38,10 @@ public class Piece implements BoardPiece {
         return blocks.length;
     }
 
+    public boolean is_hollow_at(int i, int j) {
+        return blocks[i][j].toString().equals(String.valueOf(BoardPiece.EMPTY));
+    }
+
     public Piece rotateRight() { // transpose + reverse each row
         return new Piece(reverse_rows(transpose(blocks)));
     }

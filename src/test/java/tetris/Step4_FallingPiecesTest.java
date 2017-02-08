@@ -80,7 +80,6 @@ public class Step4_FallingPiecesTest extends Assert {
     }
 
 
-/*
     public class When_a_piece_lands_on_another_piece {
 
         @Before
@@ -130,5 +129,5 @@ public class Step4_FallingPiecesTest extends Assert {
 //            assertFalse(board.hasFalling());
 //        }
     }
-*/
+
 }

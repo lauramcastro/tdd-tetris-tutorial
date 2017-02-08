@@ -7,7 +7,6 @@ package tetris;
 public class Board {
 
     public  static final String ALREADY_FALLING = "already falling";
-    private static final char   EMPTY = '.';
     
     private final int rows;
     private final int columns;
@@ -22,7 +21,7 @@ public class Board {
         this.columns = columns;
         this.falling_block = null;
         this.board = new char[rows][columns];
-        fill_with(board, Board.EMPTY);
+        fill_with(board, BoardPiece.EMPTY);
         this.last_tick = false;
     }
 
@@ -45,7 +44,7 @@ public class Board {
     }
 
     public boolean hasFalling() {
-        return ((falling_block != null) || last_tick);
+        return (falling_block != null);
     }
 
     public void drop(BoardPiece b) throws IllegalStateException {
@@ -60,14 +59,16 @@ public class Board {
 
     public void tick() {
         if (falling_block != null) {
-            current_block_row++;
-            if (reached_bottom() || touched_another_block()) {
+            if (!last_tick) {
+                current_block_row++;
+                if (reached_bottom() || touched_another_block()) {
+                    last_tick = true;
+                }
+            } else {
                 fill_with(board, toString());
                 falling_block = null;
-                last_tick = true;
+                last_tick = false;
             }
-        } else {
-            last_tick = false;
         }
     }
 
@@ -94,7 +95,7 @@ public class Board {
         String[] s = falling_block.toString().split("\n");
 
         for (int i=0; i<s.length; i++) {
-            if (s[i].replace(Board.EMPTY, ' ').trim().length() != 0) {
+            if (s[i].replace(BoardPiece.EMPTY, ' ').trim().length() != 0) {
                 reached_row++;
             }
         }
@@ -105,7 +106,7 @@ public class Board {
     private boolean touched_another_block() {
         for (int i=0; i<rows-1; i++) {
             for (int j=0; j<columns; j++) {
-                if ((board[i+1][j] != Board.EMPTY) &&
+                if ((board[i+1][j] != BoardPiece.EMPTY) &&
                     falling_block_is_at(i, j)) {
                     return true;
                 }
@@ -119,7 +120,9 @@ public class Board {
             return ((current_block_row <= row) &&
                     (row < current_block_row + falling_block.height()) &&
                     (current_block_column <= column) &&
-                    (column < current_block_column + falling_block.width()));
+                    (column < current_block_column + falling_block.width()) &&
+                    (!falling_block.is_hollow_at(row - current_block_row,
+                                                 column - current_block_column + falling_block.width()/2 - 1)));
         } else {
             return false;
         }

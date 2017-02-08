@@ -21,4 +21,9 @@ public class Block implements BoardPiece {
         return 1;
     }
 
+    public boolean is_hollow_at(int i, int j) {
+        return ((i!=0) && (j!=0));
+
+    }
+
 }
