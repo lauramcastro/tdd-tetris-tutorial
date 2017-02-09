@@ -4,13 +4,11 @@
 
 package tetris;
 
-import net.orfjackal.nestedjunit.NestedJUnit;
-import org.junit.*;
-import org.junit.runner.RunWith;
+import org.junit.Test;
 
-@Ignore("contains no test")
-@RunWith(NestedJUnit.class)
-public class Step5_MovingAFallingPieceTest extends Assert {
+import static org.junit.Assert.*;
+
+public class Step5_MovingAFallingPieceTest {
 
     // Step 5: It's your turn now
     // - Remove the @Ignore annotation from this class
@@ -27,6 +25,12 @@ public class Step5_MovingAFallingPieceTest extends Assert {
     // TODO: it cannot be moved right if another piece is in the way
     // TODO: it cannot be moved down if another piece is in the way (will stop falling)
 
+    @Test
+    public void test_to_move_a_piece() {
+        assertTrue(true);
+    }
+    
     // P.S. Take into consideration, that part of the piece's area may be empty cells.
     // Only non-empty cells should take part in the collision checks.
+
 }

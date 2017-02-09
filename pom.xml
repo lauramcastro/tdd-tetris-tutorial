@@ -138,12 +138,28 @@
                 </executions>
             </plugin>
 
-            <!-- Cobertura -->
+            <!-- Coverage -->
 
             <plugin>
               <groupId>org.jacoco</groupId>
               <artifactId>jacoco-maven-plugin</artifactId>
               <version>0.7.9</version>
+            </plugin>
+
+            <!-- Mutation -->
+
+            <plugin>
+              <groupId>org.pitest</groupId>
+              <artifactId>pitest-maven</artifactId>
+              <version>1.1.11</version>
+              <configuration>
+                <targetClasses>
+                  <param>tetris*</param>
+                </targetClasses>
+                <targetTests>
+                  <param>tetris*Test</param>
+                </targetTests>
+              </configuration>
             </plugin>
 
         </plugins>

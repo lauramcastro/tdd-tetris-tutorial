@@ -4,13 +4,11 @@
 
 package tetris;
 
-import net.orfjackal.nestedjunit.NestedJUnit;
-import org.junit.*;
-import org.junit.runner.RunWith;
+import org.junit.Test;
 
-@Ignore("contains no test")
-@RunWith(NestedJUnit.class)
-public class Step6_RotatingAFallingPieceTest extends Assert {
+import static org.junit.Assert.*;
+
+public class Step6_RotatingAFallingPieceTest {
 
     // Step 6: Training wheels off
     // - Remove the @Ignore annotation from this class
@@ -26,4 +24,10 @@ public class Step6_RotatingAFallingPieceTest extends Assert {
     // http://bsixcentdouze.free.fr/tc/tgm-en/img/wallkick1.png
     // http://bsixcentdouze.free.fr/tc/tgm-en/img/wallkick2.png
     // http://bsixcentdouze.free.fr/tc/tgm-en/img/wallkick3.png
+
+    @Test
+    public void test_to_rotate_a_piece() {
+        assertTrue(true);
+    }
+
 }
