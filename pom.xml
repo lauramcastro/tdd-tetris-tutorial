@@ -75,6 +75,27 @@
           <scope>test</scope>
         </dependency>
 
+        <dependency>
+          <groupId>org.graphwalker</groupId>
+          <artifactId>graphwalker-core</artifactId>
+          <version>3.4.2</version>
+        </dependency>
+        <dependency>
+          <groupId>org.graphwalker</groupId>
+          <artifactId>graphwalker-io</artifactId>
+          <version>3.4.2</version>
+        </dependency>
+        <dependency>
+          <groupId>org.graphwalker</groupId>
+          <artifactId>graphwalker-java</artifactId>
+          <version>3.4.2</version>
+        </dependency>
+        <dependency>
+          <groupId>org.graphwalker</groupId>
+          <artifactId>graphwalker-maven-plugin</artifactId>
+          <version>3.4.2</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -167,6 +188,30 @@
                   <param>tetris*Test</param>
                 </targetTests>
               </configuration>
+            </plugin>
+
+            <!-- MBT -->
+
+            <plugin>
+              <groupId>org.graphwalker</groupId>
+              <artifactId>graphwalker-maven-plugin</artifactId>
+              <version>3.4.2</version>
+              <executions>
+                <execution>
+                  <id>generate-test-sources</id>
+                  <phase>generate-test-sources</phase>
+                  <goals>
+                    <goal>generate-test-sources</goal>
+                  </goals>
+                </execution>
+                <execution>
+                  <id>test</id>
+                  <phase>test</phase>
+                  <goals>
+                    <goal>test</goal>
+                  </goals>
+                </execution>
+              </executions>
             </plugin>
 
         </plugins>
